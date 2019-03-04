@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>typeof & instanceof</title>
+</head>
+<body>
+<h3 style="text-align: center">
+    typeof 对于对象来说，除了函数都会显示 object，所以说 typeof 并不能准确判断变量到底是什么类型,<br>
+    如果我们想判断一个对象的正确类型，这时候可以考虑使用 instanceof，因为内部机制是通过 原型链 来判断的
+</h3>
+</body>
+<script>
+	// 判断 foo 是否是 Foo 类的实例 , 并且是否是其父类型的实例
+	function Aoo() {
+	}
+
+	function Foo() {
+	}
+
+	Foo.prototype = new Aoo();//JavaScript 原型继承
+
+	var foo = new Foo();
+	console.log(foo instanceof Foo)//true
+	console.log(foo instanceof Aoo)//true
+
+	// 复杂用法
+	console.log(Object instanceof Object);//true
+	console.log(Function instanceof Function);//true
+	console.log(Number instanceof Number);//false
+	console.log(String instanceof String);//false
+
+	console.log(Function instanceof Object);//true
+
+	console.log(Foo instanceof Function);//true
+	console.log(Foo instanceof Foo);//false
+
+	function instance_of(L, R) {//L 表示左表达式，R 表示右表达式
+		if (typeof(L) != 'object') return false
+		let O = R.prototype;// 取 R 的显示原型
+		L = L.__proto__;// 取 L 的隐式原型
+		while (true) {
+			if (L === null) return false;
+			if (O === L) return true;  // 这里重点：当 O 严格等于 L 时，返回 true
+			L = L.__proto__;
+		}
+	}
+
+	console.log(instance_of(Object, Object))
+
+</script>
+</html>

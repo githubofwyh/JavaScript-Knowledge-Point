@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>练习题</title>
+</head>
+<body>
+
+</body>
+<script>
+    window.name = 'Byte'
+    function A() {
+    	this.name = 123            // this = window
+    }
+
+    A.prototype.getA = function () {
+        console.log(this)
+        return this.name + 1
+    }
+
+    let a = new A()
+    let funcA = a.getA
+    let b = funcA()
+    console.log(b)
+</script>
+</html>

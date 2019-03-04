@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Symbol</title>
+</head>
+<body>
+
+</body>
+<script>
+	//	const mySymbol = Symbol()
+	//
+	//	let obj = {
+	//		[mySymbol]: 'Hello'
+	//	}
+	//
+	//	console.log(obj[mySymbol])
+
+
+	 /*   let userName = 'The Window'
+	    let obj = {
+	    	userName:'object',
+	        getUserName:function () {
+	    		console.log(111,this)
+	    		return function () {
+				    console.log(222,this)
+				    return this.userName
+			    }
+	        }
+	    }
+
+	    console.log(obj.getUserName()())*/
+
+
+
+//	let aaaaa = 'hello'
+//	var aaaaa = 'hello'
+//
+//	function foo() {
+//		let aaaaa = 'world'
+//		console.log(aaaaa)
+//	}
+//	foo()
+//    console.log(aaaaa,window)
+
+
+    function test() {
+    	this.hello = 'Hello'
+        console.log(this)
+    }
+
+    let obj = new test()
+    console.log(obj)
+</script>
+</html>

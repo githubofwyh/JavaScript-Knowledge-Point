@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象(Object)类型--存储指针</title>
+</head>
+<body>
+
+</body>
+<script>
+	function test(person) {
+		person.age = 26
+		person = {               //重新为 person 分配了新的内存地址
+			name: 'yyy',
+			age: 30
+		}
+
+		return person
+	}
+
+	const p1 = {
+		name: 'yck',
+		age: 25
+	}
+	const p2 = test(p1)
+	console.log(p1) // -> {name: "yck", age: 26}
+	console.log(p2) // -> {name: "yyy", age: 30}
+</script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基本类型</title>
+</head>
+<body>
+<pre>
+    <h2>
+    JavaScript 语言的每一个值都属于某一种数据类型。
+    JavaScript 语言规定了 7 种语言类型。语言类型广泛用于变量、函数参数、表达式、函数返回值等场合。
+    根据最新的语言标准，这 7 种语言类型是：Undefined、Null、Boolean、String、Number、Symbol、Object
+
+    Undefined、Null
+        因为 JavaScript 的代码 undefined 是一个变量，而并非是一个关键字，这是 JavaScript 语言公认的设计失误之一，所以，我们为了避免无意中被篡改，我建议使用 void 0 来获取 undefined 值。
+        Undefined 跟 null 有一定的表意差别，null 表示的是：“定义了但是为空”。
+        所以，在实际编程时，我们一般不会把变量赋值为 undefined，这样可以保证所有值为 undefined 的变量，都是从未赋值的自然状态。
+        Null 类型也只有一个值，就是 null，它的语义表示空值，与 undefined 不同，null 是 JavaScript 关键字，所以在任何代码中，你都可以放心用  null 关键字来获取 null 值。
+
+    String
+        String 用于表示文本数据。String 有最大长度是 2^53 - 1，这在一般开发中都是够用的，但是有趣的是，这个所谓最大长度，并不完全是你理解中的字符数。
+        因为 String 的意义并非“字符串”，而是字符串的 UTF16 编码，我们字符串的操作 charAt、charCodeAt、length 等方法针对的都是 UTF16 编码。
+        所以，字符串的最大长度，实际上是受字符串的编码长度影响的。！！！即为0-65536（U+0000 - U+FFFF）的码点被称为基本字符区域（BMP）。
+
+    Number
+        JavaScript 中的 Number 类型有 18437736874454810627(即 2^64-2^53+3) 个值。
+        JavaScript 中的 Number 类型基本符合 IEEE 754-2008 规定的双精度浮点数规则。
+        根据双精度浮点数的定义，Number 类型中有效的整数范围是 -0x1fffffffffffff 至 0x1fffffffffffff，所以 Number 无法精确表示此范围外的整数。
+        同样根据浮点数的定义，非整数的 Number 类型无法用 ==（=== 也不行） ，这也正是我们第三题的问题，为什么在 JavaScript 中，0.1+0.2 不能 =0.3：
+    </h2>
+</pre>
+</body>
+<script>
+	var undefined = 5       // 不是关键字，因此可以被声明
+	console.log(undefined)  // undefined
+	console.log(void 0)     // undefined
+	console.log(null)       // null
+
+	console.log(0.1 + 0.2 == 0.3)                             // false
+	console.log(Math.abs(0.1 + 0.2 - 0.3) <= Number.EPSILON); // 正确计算方法
+
+	//比如在 JavaScript 中计算 0.1 + 0.2时，到底发生了什么呢？
+	//首先，十进制的0.1和0.2都会被转换成二进制，但由于浮点数用二进制表达时是无穷的，例如。
+
+	//0.1 -> 0.0001100110011001...(无限)
+	//0.2 -> 0.0011001100110011...(无限)
+	//IEEE 754 标准的 64 位双精度浮点数的小数部分最多支持 53 位二进制位，所以两者相加之后得到二进制为：
+
+	//0.0100110011001100110011001100110011001100110011001100
+	//因浮点数小数位的限制而截断的二进制数字，再转换为十进制，就成了0.30000000000000004。所以在进行算术计算时会产生误差。
+
+	var o = new Object
+
+	o[Symbol.iterator] = function () {
+		var v = 0
+		return {
+			next: function () {
+				return {value: v++, done: v > 10}
+			}
+		}
+	};
+
+	for (var v of o)
+		console.log(v); // 0 1 2 3 ... 9
+
+</script>
+</html>

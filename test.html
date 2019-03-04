@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+
+</body>
+<iframe src="https://blog.csdn.net/wyhstars/article/details/87918178" width="800" height="600"></iframe>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<script type="text/javascript">
+	setInterval(function () {
+		console.log("刷屏");
+		$('iframe').attr('src', $('iframe').attr('src'));
+	}, 30000)
+</script>
+</html>
