@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>async/await 练习</title>
+</head>
+<body>
+<p>
+    1. async用来表示函数是异步的，定义的函数会返回一个promise对象，可以使用then方法添加回调函数。
+
+    2. 当 await 后面跟的是普通函数(非Promise)时，会立即执行；
+    当 await 后面跟的是 Promise 时，会等待 Promise 对象的状态被 resolved。
+
+    3. await 后面跟 Promise 时，会成为同步执行！ 例：`sequentialStart()`
+</p>
+</body>
+<script>
+	var resolveAfter2Seconds = function () {
+		console.log("starting slow promise");
+		return new Promise((resolve,reject) => {
+			setTimeout(function () {
+//				resolve(20)
+				reject('error');
+				console.log("slow promise is done");
+			}, 2000);
+		});
+	};
+
+	var resolveAfter1Second = function () {
+		console.log("starting fast promise");
+		return new Promise(resolve => {
+			setTimeout(function () {
+				resolve(10);
+				console.log("fast promise is done");
+			}, 1000);
+		});
+	};
+	var sequentialStart = async function () {
+		console.log('==SEQUENTIAL START==');
+
+		// 如果 await 操作符后的表达式不是一个 Promise 对象, 则它会被转换成一个 resolved 状态的 Promise 对象
+		const slow = await resolveAfter2Seconds();
+
+		const fast = await resolveAfter1Second();
+		console.log(slow);
+		console.log(fast);
+	}
+
+	var concurrentStart = async function () {
+		console.log('==CONCURRENT START with await==');
+		const slow = resolveAfter2Seconds(); // 立即启动计时器
+		const fast = resolveAfter1Second();
+
+		console.log(await slow);
+		console.log(await fast); // 等待 slow 完成, fast 也已经完成。
+	}
+
+	var stillSerial = function () {
+		console.log('==CONCURRENT START with Promise.all==');
+		Promise.all([resolveAfter2Seconds(), resolveAfter1Second()]).then(([slow, fast]) => {
+			console.log(slow);
+			console.log(fast);
+		});
+	}
+
+	var parallel = function () {
+		console.log('==PARALLEL with Promise.then==');
+
+		// 这种情况下可以简写成 resolveAfter2Seconds().then(console.log);
+		resolveAfter2Seconds().then((message) => console.log(message));
+		resolveAfter1Second().then((message) => console.log(message));
+	}
+
+	sequentialStart()
+	// 程序为第一个await停留了2秒，然后又为第二个await停留了1秒。直到第一个计时器结束后，第二个计时器才被创建。
+
+	//	setTimeout(concurrentStart, 2000);
+	// 两个计时器均被创建，然后一起被await。这两个计时器同时运行的，但await的调用仍然是按顺序运行的。
+
+	//	setTimeout(stillSerial, 2000);
+
+	//	setTimeout(parallel, 2000);
+</script>
+</html>
