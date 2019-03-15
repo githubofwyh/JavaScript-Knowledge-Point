@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>函数作用域</title>
+</head>
+<body>
+
+</body>
+<script>
+  let add;
+
+  const func = () => {
+	let num = 99;
+	add = () => {
+	  num++
+	  console.log(num)
+	}
+
+	const get = () => {
+	  console.log(num)
+	}
+
+	return get
+  }
+
+  const a = func()
+  const b = func()
+
+  add()   // 100
+  a()     // 99
+  b()     // 100
+</script>
+</html>

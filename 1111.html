@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1111</title>
+</head>
+<body>
+
+</body>
+<script>
+	let f;
+	let o = 1;
+
+	function a(o) {
+		if (!f) {
+			f = () => {
+				console.log('console f', o)
+			}
+		} else {
+			console.log(222)
+			console.log('f true', o)
+		}
+		o += 1;
+		f()
+	}
+
+	a(1)   //2
+	a(5)
+
+
+</script>
+</html>

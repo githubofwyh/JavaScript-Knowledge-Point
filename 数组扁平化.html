@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>数组扁平化</title>
+</head>
+<body>
+
+</body>
+<script>
+  function flatten(arr) {
+	return arr.reduce(function (prev, item) {
+	  return prev.concat(Array.isArray(item) ? flatten(item) : item);
+	}, []);
+  }
+
+  const arr = [1, 'a', ['b', 'c', {'d': 'd', 'e': 'e'}]]
+  console.log(arr.flat(3))
+
+  const arrrr = [0, 1, 2, 3, 4]
+
+  arrrr.reduce(function (accumulator, currentValue, currentIndex, array) {
+	console.log(accumulator, currentValue, currentIndex, array)
+	return accumulator + currentValue;
+  }, 8);
+
+
+</script>
+</html>

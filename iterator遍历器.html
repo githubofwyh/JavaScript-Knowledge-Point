@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Iterator遍历器</title>
+</head>
+<body>
+<p>
+    ES6 规定，默认的 Iterator 接口部署在数据结构的Symbol.iterator属性。
+    或者说，一个数据结构只要具有Symbol.iterator属性，就可以认为是“可遍历的”（iterable）。
+
+    Symbol.iterator属性本身是一个函数，就是当前数据结构默认的遍历器生成函数。执行这个函数，就会返回一个遍历器。
+    至于属性名Symbol.iterator，它是一个表达式，返回Symbol对象的iterator属性，这是一个预定义好的、类型为 Symbol 的特殊值，所以要放在方括号内。
+
+    原生具备 Iterator 接口的数据结构如下：
+    Array
+    Map
+    Set
+    String
+    TypedArray
+    函数的 arguments 对象
+    NodeList 对象
+
+    对象没有遍历器的原因：
+    对象（Object）之所以没有默认部署 Iterator 接口，是因为对象的哪个属性先遍历，哪个属性后遍历是不确定的，需要开发者手动指定。
+    本质上，遍历器是一种线性处理，对于任何非线性的数据结构，部署遍历器接口，就等于部署一种线性转换。
+</p>
+</body>
+<script>
+	let arr = ['a', 'b', 'c'];
+	let iter = arr[Symbol.iterator]();
+
+	console.log(iter.next()) // { value: 'a', done: false }
+	console.log(iter.next()) // { value: 'b', done: false }
+	console.log(iter.next()) // { value: 'c', done: false }
+	console.log(iter.next()) // { value: undefined, done: true }
+
+	// 为对象添加 Iterator 接口
+	let obj = {
+		data: ['hello', 'world'],
+		[Symbol.iterator]() {
+			const self = this;
+			let index = 0;
+			return {
+				next() {
+					if (index < self.data.length) {
+						return {
+							value: self.data[index++],
+							done: false
+						};
+					} else {
+						return {value: undefined, done: true};
+					}
+				}
+			};
+		}
+	};
+
+	console.log(obj)
+
+	for (let item of obj) {
+		console.log(item)
+	}
+</script>
+</html>

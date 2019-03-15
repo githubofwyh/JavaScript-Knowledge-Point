@@ -3,14 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>BFC布局</title>
+    <style>
+        .father {
+            width: 15%;
+            border: 1px solid black;
+        }
+
+        img {
+            float: left;
+        }
+
+        .text {
+            /*overflow: hidden;*/
+        }
+    </style>
 </head>
 <body>
-<p>
-    BFC布局：block formatting context (块级格式化上下文)。
+<div class="father">
+    <img src="assets/img/avatar.png" alt="" width="200">
+    <p class="text">
+        BFC布局：block formatting context (块级格式化上下文)。
 
-    原则   ：内部子元素无论怎样都不会影响到外部的元素，也不会受到外部的影响。
+        原则   ：内部子元素无论怎样都不会影响到外部的元素，也不会受到外部的影响。
 
-    场景   ：
-</p>
+        场景   ：实现更健壮、更智能的自适应布局，比纯流体自适应更智能。也可以用来去 margin 重叠或清除 float 影响
+    </p>
+</div>
 </body>
 </html>
