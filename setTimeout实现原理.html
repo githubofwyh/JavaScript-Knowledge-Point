@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>setTimeout实现原理</title>
+</head>
+<body>
+<p>
+  setTimeout仅仅能保证在指定的时间过后将任务(须要运行的函数)插入队列等候，并不保证这个任务在什么时候运行。
+  运行javascript的线程会在空暇的时候，自行从队列中取出任务然后运行它。javascript通过这样的队列机制。给我们制造一个异步运行的假象。
+</p>
+</body>
+<script>
+  const start = new Date();
+  setTimeout(function () {
+	const end = new Date();
+	console.log("Time elapsed1: ", end - start, "ms");
+  }, 500);
+  setTimeout(function () {
+	const end = new Date();
+	console.log("Time elapsed2: ", end - start, "ms");
+  }, 900);
+
+  while (new Date - start <= 1000) {}
+
+
+  setTimeout(function(){console.log(4)},0);
+  new Promise(function(resolve){
+	console.log(1)
+	for( var i=0 ; i<10000 ; i++ ){
+	  i==9999 && resolve()
+	}
+	console.log(2)
+  }).then(function(){
+	console.log(5)
+  });
+  console.log(3);
+
+
+
+
+</script>
+</html>

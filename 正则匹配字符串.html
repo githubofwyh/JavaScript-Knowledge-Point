@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>正则匹配字符串</title>
+</head>
+<body>
+
+</body>
+<script>
+  function regularStr(str1, str2) {
+	for (let i of str2) {
+	  const reg2 = new RegExp(`[${i}]`, 'g')
+	  if (!str1.match(reg2)) return false
+	  if (str1.match(reg2).length < str2.match(reg2).length) return false
+	}
+	return true
+  }
+
+  console.log(regularStr('Wyh123456', 'Wyh123456'))
+</script>
+</html>

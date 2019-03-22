@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Promise</title>
+  <meta charset="UTF-8">
+  <title>Promise</title>
 </head>
 <body>
-
+<p>
+  Promise 新建后就会立即执行 !!!!!!!!!!!!
+</p>
 </body>
 <script>
-    function timeout(ms) {
-        return new Promise((resolve, reject) => {
-            setTimeout(resolve, ms, {'success': 'success', 'done': 'done'});
-        });
-    }
+  function timeout(ms) {
+	return new Promise((resolve, reject) => {
+	  // reject('error')
+	  setTimeout(resolve, ms, {'success': 'success', 'done': 'done'});
+	});
+  }
 
-    timeout(210).then(({success: value1, done: value2}) => {
-        console.log(value1, value2);
-    }, (error) => {
-        console.log(error);
-    });
+  timeout(2100).then(({success: value1, done: value2}) => {
+	console.log(value1, value2);
+  }, (error) => {
+	console.log(error);
+  });
 
 </script>
 </html>
