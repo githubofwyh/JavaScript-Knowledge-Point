@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>变量提升</title>
+  <meta charset="UTF-8">
+  <title>变量提升</title>
 </head>
 <body>
 <h2>
@@ -31,41 +31,41 @@
     对于同名的函数声明，Javascript采用的是覆盖原则，先声明的会被覆盖！
     因为函数在声明时会指定函数的内容，所以同一作用域下一系列同名函数声明的最终结果是调用时函数的内容和最后一次函数声明相同
 
-    对于同名的函数声明和变量声明，采用的是忽略原则，由于在提升时函数声明会提升到变量声明之前，变量声明一定会被忽略
+    对于同名的函数声明和变量声明，采用的是忽略原则，由于在提升时函数声明会提升到变量声明之前，变量声明会被忽略(详见同名的变量声明，采用忽略原则)
     </pre>
 </h2>
 </body>
 <script>
-	var x = 1;                 // 声明 + 初始化 x
-	console.log(x, y);         // '1 undefined'
-	var y = 2                  // JavaScript 仅提升声明，而不提升初始化!!!
+  var x = 1;                 // 声明 + 初始化 x
+  console.log(x, y);         // '1 undefined'
+  var y = 2                  // JavaScript 仅提升声明，而不提升初始化!!!
 
 
-	/* 采用此种方法创建的函数在函数外层只能使用 fooName 不能使用 fooName1 的函数名。fooName1 的命名只能在创建的函数内部使用 */
-	var fooName = function fooName1() {
-		console.log(111, fooName1)
-	}
-	fooName()
+  /* 采用此种方法创建的函数在函数外层只能使用 fooName 不能使用 fooName1 的函数名。fooName1 的命名只能在创建的函数内部使用 */
+  var fooName = function fooName1() {
+	console.log(111, fooName1)
+  }
+  fooName()
 
-	//   console.log(fooName1)
-
-
-	var foo = function () {
-		console.log('wuwu')
-	}
-
-	function foo() {
-		console.log('haha')
-	}
+  //   console.log(fooName1)
 
 
-	foo()
+  var foo = function () {
+	console.log('wuwu')
+  }
 
-	var b = undefined;
+  function foo() {
+	console.log('haha')
+  }
 
-	function b() {
-		console.log(1)
-	};b()
+
+  foo()
+
+  var b = undefined;
+
+  function b() {
+	console.log(1)
+  };b()
 
 
 </script>

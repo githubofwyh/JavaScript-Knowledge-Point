@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>绝对定位</title>
+  <style>
+    .container {
+      position: relative;
+      height: 100px;
+      width: 900px;
+      background-color: antiquewhite;
+    }
+
+    .absolute {
+      position: absolute;
+      background-color: aquamarine;
+    }
+
+    .son{
+      width: 500px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="absolute">
+    <div class="son"></div>
+  </div>
+</div>
+
+<div class="scroll-outer" @DOMMouseScroll="handlescroll" @mousewheel="handlescroll">
+  <div ref="scrollBody" class="scroll-body" >
+
+  </div>
+</div>
+</body>
+</html>

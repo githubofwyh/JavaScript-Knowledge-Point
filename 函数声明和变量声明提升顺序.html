@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>函数声明和变量声明的提升顺序</title>
+</head>
+<body>
+<p>
+  函数会首先被提升，然后才是变量
+</p>
+</body>
+<script>
+  console.log(a);
+  var a = "孙悟空";
+
+  function a() {
+	console.log("小钻风");
+  }
+
+  //实际相当于
+  function a() {
+	console.log("小钻风");
+  }
+
+  var a;   // 由于上面函数已声明a,相同的变量名声明会被忽略。
+
+  console.log(a)
+
+
+  console.log(foo())
+
+  function foo() {
+    console.log(111)
+  }
+  function foo() {
+    console.log(222)
+  }
+
+
+
+</script>
+</html>

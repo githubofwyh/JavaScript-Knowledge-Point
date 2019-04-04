@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>transition</title>
+  <style>
+    .container {
+      background-color: gainsboro;
+      height: 300px;
+      display: flex;
+    }
+
+    .left {
+      width: 20%;
+      height: 250px;
+      background-color: aqua;
+    }
+
+    .right {
+      flex: 1 1 auto;
+      height: 250px;
+      background-color: bisque;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="left"></div>
+  <div class="right"></div>
+</div>
+<button id="btn" style="margin: 100px">left长度变化</button>
+</body>
+<script>
+  document.getElementById('btn').onclick = function () {
+	document.getElementsByClassName('left').style.width = '10%'
+
+  }
+
+
+</script>
+</html>

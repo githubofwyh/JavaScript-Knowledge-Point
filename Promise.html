@@ -10,7 +10,7 @@
 </p>
 </body>
 <script>
-  function timeout(ms) {
+  /*function timeout(ms) {
 	return new Promise((resolve, reject) => {
 	  // reject('error')
 	  setTimeout(resolve, ms, {'success': 'success', 'done': 'done'});
@@ -21,7 +21,32 @@
 	console.log(value1, value2);
   }, (error) => {
 	console.log(error);
-  });
+  });*/
+
+  // Promise.resolve(1).then(console.log(2)).then(new Promise(resolve => resolve(3))).then(foo1)\
+
+ /* Promise.resolve(1)  // => new Promise(resolve => resolve(res))
+	  .then(2)        // (res) => res  2()
+	  .then(new Promise(resolve => {
+		return function () {
+		  resolve(30)
+		  console.log('我执行了')
+		}
+		resolve(30)
+	  }))
+	  .then((i) => {
+		console.log(i)
+	  })*/
+
+
+  console.log(111, new Promise(foo))
+
+  function foo(item) {
+    console.log('jhdjhdfjkjfbfkl')
+    return item
+  }
+
+
 
 </script>
 </html>
