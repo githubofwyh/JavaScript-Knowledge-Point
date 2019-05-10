@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>if判断</title>
+</head>
+<body>
+
+</body>
+<script>
+  // let name = 'wyh'
+  // let age = 18
+  // if (name == 'wyh1') console.log('name:wyh')
+  // else if (age == 181) console.log('age:18')
+  // else console.log('nothing reg')
+
+  var a = 'windoow'
+  var obj1 = {
+    a:1,
+    b:function () {
+      var a = 'b';
+      (function () {
+        console.log(this.a)
+	  })()
+	}
+  }
+
+  obj1.b()
+</script>
+</html>
